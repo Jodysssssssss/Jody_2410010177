@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Profile | Jody Setiawan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,255,.2), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(255,0,255,.2), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(0,100,255,.2), transparent 40%);
+    z-index:-2;
+    animation:bgMove 12s infinite alternate;
+}
+
+@keyframes bgMove{
+    0%{transform:scale(1);}
+    100%{transform:scale(1.2);}
+}
+
+/* Floating Particles */
+
+.particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.particles span{
+    position:absolute;
+    display:block;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    animation:float 15s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* Navbar */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.05);
+    z-index:999;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#00eaff;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00eaff;
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:70px;
+    margin-bottom:20px;
+    background:linear-gradient(45deg,#00eaff,#ffffff,#ff00ea);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.8;
+    color:#ddd;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(45deg,#00eaff,#7b2cff);
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+/* Sections */
+
+section{
+    padding:100px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:60px;
+}
+
+/* Glass Cards */
+
+.glass{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:25px;
+}
+
+/* About */
+
+.about-card{
+    padding:40px;
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.about-card img{
+    width:100%;
+    border-radius:20px;
+}
+
+.about-card p{
+    line-height:2;
+    color:#ddd;
+}
+
+/* Skills */
+
+.skill{
+    margin-bottom:25px;
+}
+
+.skill-name{
+    margin-bottom:10px;
+}
+
+.bar{
+    width:100%;
+    height:15px;
+    background:#111;
+    border-radius:20px;
+}
+
+.fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#00eaff,#7b2cff);
+    animation:grow 3s forwards;
+}
+
+@keyframes grow{
+    from{width:0;}
+}
+
+/* Timeline */
+
+.timeline{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+}
+
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    width:4px;
+    height:100%;
+    background:#00eaff;
+}
+
+.item{
+    width:45%;
+    padding:25px;
+    margin:20px 0;
+}
+
+.left{
+    margin-right:auto;
+}
+
+.right{
+    margin-left:auto;
+}
+
+/* Contact */
+
+.contact{
+    text-align:center;
+}
+
+.contact a{
+    color:#00eaff;
+    text-decoration:none;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:rgba(255,255,255,0.05);
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:45px;
+}
+
+.about-card{
+    grid-template-columns:1fr;
+}
+
+.timeline::before{
+    left:10px;
+}
+
+.item{
+    width:100%;
+    margin-left:30px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<nav>
+    <div class="logo">PROFILE</div>
+    <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Skill</a></li>
+        <li><a href="#journey">Perjalanan</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>JODY SETIAWAN</h1>
+        <p>
+            Desainer, Developer, dan Entrepreneur yang berfokus pada
+            inovasi digital, branding modern, serta pengembangan bisnis
+            kreatif dengan tampilan profesional dan elegan.
+        </p>
+        <a href="#about" class="btn">Explore More</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2 class="section-title fade">Tentang Saya</h2>
+
+    <div class="about-card glass fade">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43f" alt="">
+        <div>
+            <p>
+                Halo, saya Jody Setiawan. Saya memiliki ketertarikan
+                dalam dunia desain, teknologi, bisnis digital,
+                pengembangan website, branding produk, serta inovasi
+                kreatif. Saya percaya bahwa kombinasi antara kreativitas
+                dan teknologi dapat menghasilkan solusi yang luar biasa.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2 class="section-title fade">Keahlian</h2>
+
+    <div class="glass" style="padding:40px">
+
+        <div class="skill">
+            <div class="skill-name">Web Development</div>
+            <div class="bar">
+                <div class="fill" style="width:90%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">Graphic Design</div>
+            <div class="bar">
+                <div class="fill" style="width:95%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">Business Strategy</div>
+            <div class="bar">
+                <div class="fill" style="width:85%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <div class="skill-name">Digital Marketing</div>
+            <div class="bar">
+                <div class="fill" style="width:80%"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="journey">
+    <h2 class="section-title fade">Perjalanan</h2>
+
+    <div class="timeline">
+
+        <div class="item glass left fade">
+            <h3>2023</h3>
+            <p>Memulai pengembangan proyek digital dan desain kreatif.</p>
+        </div>
+
+        <div class="item glass right fade">
+            <h3>2024</h3>
+            <p>Mempelajari pengembangan web modern dan branding.</p>
+        </div>
+
+        <div class="item glass left fade">
+            <h3>2025</h3>
+            <p>Membangun berbagai proyek bisnis dan desain profesional.</p>
+        </div>
+
+        <div class="item glass right fade">
+            <h3>2026</h3>
+            <p>Fokus pada pengembangan produk dan inovasi digital.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title fade">Kontak</h2>
+
+    <div class="glass contact fade" style="padding:50px">
+        <p>Email : yourmail@example.com</p>
+        <br>
+        <p>Instagram : @yourusername</p>
+        <br>
+        <p>Website : yourwebsite.com</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Jody Setiawan | Elegant Personal Portfolio
+</footer>
+
+<script>
+
+/* Particles */
+
+const particles = document.getElementById("particles");
+
+for(let i=0;i<80;i++){
+
+    let dot = document.createElement("span");
+
+    dot.style.left = Math.random()*100+"%";
+    dot.style.animationDuration = (8+Math.random()*15)+"s";
+    dot.style.opacity = Math.random();
+
+    particles.appendChild(dot);
+}
+
+/* Scroll Animation */
+
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', ()=>{
+
+    fades.forEach(el=>{
+
+        const pos = el.getBoundingClientRect().top;
+
+        if(pos < window.innerHeight-100){
+            el.classList.add('show');
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
